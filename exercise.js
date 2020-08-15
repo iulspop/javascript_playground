@@ -85,12 +85,15 @@ console.log(rotateRightmostDigits(735291, 6));      // 352917
 */
 
 function rotateRightmostDigits(number, count) {
-  let digits = number.toString().split("")
+  let digits = convertNumberToArrayOfDigits(number)
   let digit = digits.splice(digits.length - count, 1)[0]
   digits.push(digit)
   return Number(digits.join(""))
 }
 
+function convertNumberToArrayOfDigits(number) {
+  return number.toString().split("").map(digit => Number(digit))
+}
 
 /* 
 Take the number 735291 and rotate it by one digit to the left, getting 352917.
@@ -111,6 +114,35 @@ maxRotation(3);               // 3
 maxRotation(35);              // 53
 maxRotation(105);             // 15 -- the leading zero gets dropped
 maxRotation(8703529146);      // 7321609845
+
+/*
+Input: number
+Output: max rotated number
+
+number:
+523552
+
+max rotated number:
+252535
+
+What is a the maximum rotation of a number?
+In the context of programming, rotation means either
+rotating to the left: shifting to the left and pushing dropped digit from MSD to LSD
+or
+rotating to the right: shifting to the right and pushing dropped digit from LSD to MSD
+this can be applied to any ordered set, such as the digits of a number or the elements of an array.
+
+So what is the maximum rotation of an number?
+it is rotating to the left repeatedly, 
+with each rotation fixing an additional digit from the left, 
+so the following rotation starts after the fixed digit,
+until all digits are fixed.
+
+
+Explicit Requirements:
+-
+
+*/
 
 function maxRotation(number) {
  
