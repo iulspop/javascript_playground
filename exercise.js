@@ -88,13 +88,20 @@ function rotateRightmostDigits(number, count) {
   let digits = number.toString().split("")
   let digit = digits.splice(digits.length - count, 1)[0]
   digits.push(digit)
-  return digits.map(digit => digit.toString()).join("")
+  return Number(digits.join(""))
 }
 
 
-/* Take the number 735291 and rotate it by one digit to the left, getting 352917. Next, keep the first digit fixed in place and rotate the remaining digits to get 329175. Keep the first two digits fixed in place and rotate again to get 321759. Keep the first three digits fixed in place and rotate again to get 321597. Finally, keep the first four digits fixed in place and rotate the final two digits to get 321579. The resulting number is called the maximum rotation of the original number.
+/* 
+Take the number 735291 and rotate it by one digit to the left, getting 352917.
+Next, keep the first digit fixed in place and rotate the remaining digits to get 329175. 
+Keep the first two digits fixed in place and rotate again to get 321759. 
+Keep the first three digits fixed in place and rotate again to get 321597. 
+Finally, keep the first four digits fixed in place and rotate the final two digits to get 321579. 
+The resulting number is called the maximum rotation of the original number.
 
-Write a function that takes an integer as an argument, and returns the maximum rotation of that integer. You can (and probably should) use the rotateRightmostDigits function from the previous exercise.
+Write a function that takes an integer as an argument, and returns the maximum rotation of that integer.
+You can (and probably should) use the rotateRightmostDigits function from the previous exercise.
 
 Examples:
 */
