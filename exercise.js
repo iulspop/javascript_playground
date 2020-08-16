@@ -116,18 +116,10 @@ maxRotation(105);             // 15 -- the leading zero gets dropped
 maxRotation(8703529146);      // 7321609845
 
 /*
+UNDERSTAND THE PROBLEM
+
 Input: number (int)
 Output: max rotated number (int)
-
-number:
-523552
-
-max rotated number:
-252535
-
-0123456
-
-1350246
 
 What is a the maximum rotation of a number?
 In the context of programming, rotation means either
@@ -140,11 +132,21 @@ So what is the maximum rotation of an number?
 it is rotating to the left repeatedly, 
 with each rotation fixing an additional digit from the left, 
 so the following rotation starts after the fixed digit,
-until all the initial digits are fixed.
+repeat until all the digits are fixed.
+
+what if leading number is zero?
+drop it!
 
 
 mental model (view on what the problem requires):
-rotate number, fixing a digit each time from the left, until each digit has been rotated to fixed.
+rotate number, fixing a digit each time from the left, repeat until all digits are fixed.
+
+EXAMPLES / TEST CASES
+Input: 523552
+Output: 252355
+
+Input: 0123456
+Output: 1350426
 
 */
 
