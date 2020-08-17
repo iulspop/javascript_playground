@@ -85,10 +85,10 @@ console.log(rotateRightmostDigits(735291, 6));      // 352917
 */
 
 function rotateRightmostDigits(number, count) {
-  let digits = convertNumberToArrayOfDigits(number)
+  if (!Array.isArray(number)) digits = convertNumberToArrayOfDigits(number)
   let digit = digits.splice(digits.length - count, 1)[0]
   digits.push(digit)
-  return Number(digits.join(""))
+  return digits
 }
 
 function convertNumberToArrayOfDigits(number) {
@@ -109,11 +109,11 @@ You can (and probably should) use the rotateRightmostDigits function from the pr
 Examples:
 */
 
-maxRotation(735291);          // 321579
-maxRotation(3);               // 3
-maxRotation(35);              // 53
-maxRotation(105);             // 15 -- the leading zero gets dropped
-maxRotation(8703529146);      // 7321609845
+console.log(maxRotation(735291));          // 321579
+console.log(maxRotation(3));               // 3
+console.log(maxRotation(35));              // 53
+console.log(maxRotation(105));             // 15 -- the leading zero gets dropped
+console.log(maxRotation(8703529146));      // 7321609845
 
 /*
 UNDERSTAND THE PROBLEM
@@ -148,8 +148,48 @@ Output: 252355
 Input: 0123456
 Output: 1350426
 
+Input: 735291
+Output: 321579
+
+Input: 3
+Output: 3
+
+Input: 35
+Output: 53
+
+Input: 105
+Output: 15 -- the leading zero gets dropped
+
+Input: 8703529146
+Output: 7321609845
+
+DATA STRUCTURE
+bcs of repeating operations on order list of digits, we use array!
+
+ALGORITHM
+1. Transform the number into an array of digits
+2. Rotate array of digits starting from the beginning of the array
+3. Rotate array of digits again, but starting with one digit to the right,
+   leaving the preceding digit fixed in position,
+   Repeat until all digits have been rotated
+4. If leading 0, drop it.
+5. Transform array of digits into integer,
+
+test algorithm
+input: 735291
+1. [7, 3, 5, 2, 9, 1]
+2. [3, 5, 2, 9, 1, 7]
+3. [3, 2, 1, 5, 7, 9]
+4. [3, 2, 1, 5, 7, 9]
+5. 321579
+output: 321579
+
 */
 
 function maxRotation(number) {
- 
+  digits = convertNumberToArrayOfDigits(number)
+  for (let count = digits.length; count > 1; count--) {
+    rotateRightmostDigits(digits, count)
+  }
+  return Number(digits.join(""))
 }
